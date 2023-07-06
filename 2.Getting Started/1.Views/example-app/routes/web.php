@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get("/home", function() {
-    return view('home');
+    $items = array('table', 'chair', 'stool');
+    return view('homePage', ['products' => $items]);
 });
