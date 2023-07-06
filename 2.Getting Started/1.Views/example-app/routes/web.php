@@ -18,7 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/home", function() {
+Route::get("/home/{userid}/{age}", function($userid, $age) {
+    $userName = request(key:'username');
     $items = array('table', 'chair', 'stool');
-    return view('homePage', ['products' => $items]);
+    return view('homePage', ['products' => $items, 'userName' => $userName, 'userid' => $userid, 'age' => $age]);
+});
+
+Route::get('/custom-form', function(){
+    return view ('customForm');
+});
+Route::post("/form-submit", function(){
+    dd(request()->all());
 });
