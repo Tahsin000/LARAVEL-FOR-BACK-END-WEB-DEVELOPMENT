@@ -32,5 +32,11 @@ Route::post("/form-submit", function(){
     dd(request()->all());
 });
 
+Route::get('/insert', 'App\Http\Controllers\HomeController@insertOpration');
+Route::get('/read', 'App\Http\Controllers\HomeController@readOpration');
+Route::get('/update', 'App\Http\Controllers\HomeController@updateOpration');
+Route::get('/delete', 'App\Http\Controllers\HomeController@deleteOpration');
+
+
 // HomeController 
  Route::get('/home','App\Http\Controllers\HomeController@index');
