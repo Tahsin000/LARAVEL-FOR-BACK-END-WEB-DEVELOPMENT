@@ -14,17 +14,17 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        
-        // $uName = $request->has('name') ? $request->get('uname') : '';
-        // $pass = $request->has('pass') ? $request->get('pass') : '';
-        
-        // $userInfo = User::where('name', '=', $uName)->where('password', '=', $pass)->first();
 
-        // if (isset($userInfo) && $userInfo != null){
-        //     return redirect('/products');
-        // } else {
-        //     return redirect()->back();
-        // }
+        $uname = $request->has('uname') ? $request->get('uname') : '';
+        $pass = $request->has('pass') ? $request->get('pass') : '';
+
+        $userInfo = User::where('name', '=', $uname)->where('password', '=', $pass)->first();
+
+        if (isset($userInfo)) {
+            return redirect('/admin_product');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -46,12 +46,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::insert([
-            'name'=> $request->has('uname') ? $request->get('uname') : '',
-            'email'=> $request->has('email') ? $request->get('email') : '',
-            'mobile'=> $request->has('mobile') ? $request->get('mobile') : '',
-            'password'=> $request->has('pass') ? $request->get('pass') : '',
+            'name' => $request->has('uname') ? $request->get('uname') : '',
+            'email' => $request->has('email') ? $request->get('email') : '',
+            'mobile' => $request->has('mobile') ? $request->get('mobile') : '',
+            'password' => $request->has('pass') ? $request->get('pass') : '',
         ]);
-        return redirect('/shop');
+        
+        return redirect('/admin_product');
         // return $request->all();
     }
 
@@ -98,5 +99,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function addProduct()
+    {
+        return view('admin.add_product');
     }
 }
