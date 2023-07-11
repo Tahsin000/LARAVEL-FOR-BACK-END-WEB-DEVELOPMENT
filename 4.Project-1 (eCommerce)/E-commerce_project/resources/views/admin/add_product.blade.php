@@ -1,28 +1,38 @@
 @extends('layout.master')
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADD PRODUCT</title>
-    <style>
-        .h-screen {
-            height: 100vh;
-        }
-    </style>
-</head>
+@section('title', 'Admin_shop')
 
-<body>
+
+@section('content')
     <div class="container-fluid px-4">
-        <div class="h-screen row justify-content-center align-items-center ">
-            <div class="col-md-3 col-sm-6 col-12">
-                @if(session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
+        <div class="h-screen row justify-content-center align-items-center my-5">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach($returnProducts as $product)
+                        <div class="col-lg-4 mt-3 p-3" >
+                            <div class="border border-2 p-3 rounded " >
+                                <img src="{{ asset($product['image']) }}" height="200px" width="150px">
+                                <h2> {{$product['name']}} </h2>
+                                <div>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <p> {{$product['price']}}tk </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+            </div>
+            <div class="col-lg-4 p-3 mt-3">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
                 @endif
-                <h2>Register Form</h2>
+                <h2>Add Product</h2>
                 <form method="POST" action="/products" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mt-5">
@@ -48,6 +58,6 @@
 
         </div>
     </div>
-</body>
 
-</html>
+@endsection
+

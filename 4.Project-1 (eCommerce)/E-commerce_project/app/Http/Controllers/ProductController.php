@@ -51,7 +51,7 @@ class ProductController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $fileName = 'product_'.time().++$i.'.'.$extension;
                 $location = '/images/uploads/';
-                $file->move(public_path().$location);
+                $file->move(public_path().$location, $fileName);
                 $imageLocation[] = $location.$fileName;
                 
             }
@@ -109,5 +109,23 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+    public function addProduct()
+    {
+        $products = Product::all();
+        $returnProducts = array();
+
+        foreach ($products as $product){
+            $images = explode('|', $product->image);
+
+            //dd($images[0]);
+            $returnProducts[] = [
+                'name'=> $product->name,
+                'price'=> $product->price,
+                'amount'=> $product->amount,
+                'image'=>$images[0],
+            ];
+        }
+        return view('admin.add_product', compact('returnProducts')); // compact('returnProducts')
     }
 }

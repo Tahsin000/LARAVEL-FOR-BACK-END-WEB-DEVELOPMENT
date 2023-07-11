@@ -100,8 +100,5 @@ class UserController extends Controller
     {
         //
     }
-    public function addProduct()
-    {
-        return view('admin.add_product');
-    }
+
 }
