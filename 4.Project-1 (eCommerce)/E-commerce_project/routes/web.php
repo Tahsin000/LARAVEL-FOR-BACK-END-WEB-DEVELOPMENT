@@ -21,9 +21,9 @@ Route::get('/', function(){
     return view('homePage.homePage');
 });
 
-Route::get('/shop', function(){
-    return view('shop.shop');
-});
+//Route::get('/shop', function(){
+//    return view('shop.shop');
+//});
 
 Route::get('/features', function(){
     return view('features.feature');
@@ -53,8 +53,9 @@ Route::get('/register', function(){
     return view('component.register');
 });
 
-Route::resource('/products', \App\Http\Controllers\ProductController::class);
+Route::resource('/shop', \App\Http\Controllers\ProductController::class);
 Route::resource('/users', \App\Http\Controllers\UserController::class);
 
 // ----------  admin product ---------------
 Route::get('/admin_product', '\App\Http\Controllers\ProductController@addProduct');
+Route::get('/find_products/{id}', '\App\Http\Controllers\ProductController@find_products');

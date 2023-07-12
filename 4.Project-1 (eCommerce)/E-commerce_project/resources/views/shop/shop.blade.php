@@ -4,6 +4,6 @@
 
 
 @section('content')
-    @include('shop.allProducts')
+    @include('shop.allProducts', ['products'=>$products])
 
 @endsection

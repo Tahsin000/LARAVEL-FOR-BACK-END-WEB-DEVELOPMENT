@@ -33,7 +33,7 @@
                     </div>
                 @endif
                 <h2>Add Product</h2>
-                <form method="POST" action="/products" enctype="multipart/form-data">
+                <form method="POST" action="/shop" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mt-5">
                         <label for="email">product name:</label>

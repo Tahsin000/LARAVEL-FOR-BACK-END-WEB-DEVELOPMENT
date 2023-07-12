@@ -3,7 +3,7 @@
         <div class="wrap-menu-desktop how-shadow1">
             <nav class="limiter-menu-desktop container">
                 <a href="#" class="logo">
-                    <img src="images/icons/logo-01.png" alt="IMG-LOGO" />
+                    <img src={{asset('images/icons/logo-01.png')}} alt="IMG-LOGO" />
                 </a>
 
                 <div class="menu-desktop">
@@ -49,7 +49,7 @@
 
     <div class="wrap-header-mobile">
         <div class="logo-mobile">
-            <a href="index-2.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO" /></a>
+            <a href="{{url('/')}}"><img src="{{asset('images/icons/logo-01.png')}}" alt="IMG-LOGO" /></a>
         </div>
 
         <div class="wrap-icon-header flex-w flex-r-m m-r-15">
@@ -120,7 +120,7 @@
     <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
         <div class="container-search-header">
             <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                <img src="images/icons/icon-close2.png" alt="CLOSE" />
+                <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE" />
             </button>
             <form class="wrap-search-header flex-w p-l-15">
                 <button class="flex-c-m trans-04">
@@ -149,7 +149,7 @@
             <ul class="header-cart-wrapitem w-full">
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
-                        <img src="images/item-cart-01.jpg" alt="IMG">
+                        <img src="{{asset('images/item-cart-01.jpg')}}" alt="IMG">
                     </div>
                     <div class="header-cart-item-txt p-t-8">
                         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
@@ -162,7 +162,7 @@
                 </li>
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
-                        <img src="images/item-cart-02.jpg" alt="IMG">
+                        <img src="{{asset('images/item-cart-02.jpg')}}" alt="IMG">
                     </div>
                     <div class="header-cart-item-txt p-t-8">
                         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
@@ -175,7 +175,7 @@
                 </li>
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
-                        <img src="images/item-cart-03.jpg" alt="IMG">
+                        <img src="{{asset('images/item-cart-03.jpg')}}" alt="IMG">
                     </div>
                     <div class="header-cart-item-txt p-t-8">
                         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">

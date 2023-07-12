@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use function Ramsey\Collection\Map\toArray;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+        $products = Product::paginate(3);
+        return view('shop.shop', compact('products'));
     }
 
     /**
@@ -74,7 +76,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        dd($product);
     }
 
     /**
@@ -127,5 +129,13 @@ class ProductController extends Controller
             ];
         }
         return view('admin.add_product', compact('returnProducts')); // compact('returnProducts')
+    }
+    public function find_products($id){
+        $product = Product::find($id);
+        $images = explode('|',$product -> image);
+        $related_products = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->limit(3)->get();
+
+        return view('share.productModal', compact('product','images', 'related_products'));
+//        return view('homePage.productModal')->with('products', $products); // asset(explode('|', $Modalproduct->image)[0])
     }
 }
