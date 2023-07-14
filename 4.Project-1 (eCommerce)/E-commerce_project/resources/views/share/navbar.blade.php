@@ -14,8 +14,8 @@
                         <li class="{{ request()->is('/shop') ? 'active-menu' : '' }}">
                             <a href="{{url('shop')}}">Shop</a>
                         </li>
-                        <li class="{{ request()->is('/my_cart') ? 'active-menu' : '' }}" data-label1="hot">
-                            <a href="{{url('my_cart')}}">My_Cart</a>
+                        <li class="{{ request()->is('/view_cart') ? 'active-menu' : '' }}" data-label1="hot">
+                            <a href="{{url('view_cart')}}">My_Cart</a>
                         </li>
                         <li class="{{ request()->is('/blog') ? 'active-menu' : '' }}">
                             <a href="{{url('blog')}}">Blog</a>

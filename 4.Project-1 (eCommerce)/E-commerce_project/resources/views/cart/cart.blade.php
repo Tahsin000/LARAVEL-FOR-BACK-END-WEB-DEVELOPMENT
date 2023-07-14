@@ -4,6 +4,6 @@
 
 
 @section('content')
-@include('cart.cartForm')
+@include('cart.cartForm', ['carts'=>$carts, 'subTotal'=>$subTotal])
 
 @endsection

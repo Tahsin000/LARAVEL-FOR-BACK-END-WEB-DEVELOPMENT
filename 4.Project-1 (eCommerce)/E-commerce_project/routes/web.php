@@ -29,9 +29,9 @@ Route::get('/features', function(){
     return view('features.feature');
 });
 
-Route::get('/my_cart', function(){
-    return view('cart.cart');
-});
+//Route::get('/my_cart', function(){
+//    return view('cart.cart');
+//});
 
 Route::get('/blog', function(){
     return view('blog.blog');
@@ -53,8 +53,15 @@ Route::get('/register', function(){
     return view('component.register');
 });
 
+Route::post('/add-to-cart', '\App\Http\Controllers\ProductController@addToCart');
+
 Route::resource('/shop', \App\Http\Controllers\ProductController::class);
 Route::resource('/users', \App\Http\Controllers\UserController::class);
+
+
+// ----------  cart  ---------------
+Route::get('/view_cart', '\App\Http\Controllers\ProductController@viewCart');
+Route::get('/remove_item/{rowId}', '\App\Http\Controllers\ProductController@removeItem');
 
 // ----------  admin product ---------------
 Route::get('/admin_product', '\App\Http\Controllers\ProductController@addProduct');

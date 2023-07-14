@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use function Ramsey\Collection\Map\toArray;
 
@@ -137,5 +138,36 @@ class ProductController extends Controller
 
         return view('share.productModal', compact('product','images', 'related_products'));
 //        return view('homePage.productModal')->with('products', $products); // asset(explode('|', $Modalproduct->image)[0])
+    }
+    public function addToCart(Request $request){
+        $id = $request->has('pid')? $request->get('pid') : '';
+        $name = $request->has('name')? $request->get('name') : '';
+        $quantity = $request->has('quantity')? $request->get('quantity') : '';
+        $size = $request->has('size')? $request->get('size') : '';
+        $price = $request->has('price')? $request->get('price') : '';
+
+        $images = Product::find($id)->image;
+        $image = explode('|', $images)[0];
+
+        $cart = Cart::content()->where('id', $id)->first();
+        if (isset($cart) && $cart != null){
+            $quantity = ((int)$quantity * (int)$cart->qty);
+            $total = ((int)$quantity * (int)$price);
+            Cart::update($cart->rowId,['qty'=>$quantity, 'options' => ['size'=> $size, 'image'=>$image, 'total'=>$total]]);
+        } else {
+            $total = ((int) $quantity * (int)$price);
+            Cart::add($id, $name, $quantity, $price, ['size'=> $size, 'image'=>$image, 'total'=>$total]);
+        }
+
+        return redirect('/shop')->with('success', 'Product added to your cart!');
+    }
+    public function viewCart(){
+        $carts = Cart::content();
+        $subTotal = Cart::subtotal();
+        return view('cart.cart', compact('carts', 'subTotal'));
+    }
+    public function removeItem($rowId){
+        Cart::remove($rowId);
+        return redirect('/view_cart')->with('success', 'Product Remove successfully');
     }
 }
