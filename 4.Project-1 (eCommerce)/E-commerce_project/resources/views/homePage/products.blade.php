@@ -213,8 +213,9 @@
                 {{--   $featured_products  --}}
                 <div class="block2">
                     <div class="block2-pic hov-img0">
-                        <img src="{{asset($featured_product->image)}}" alt="IMG-PRODUCT">
-                        <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                        {{--@dd(explode('|',$featured_product->image));--}}
+                        <img src="{{asset(explode('|',$featured_product->image)[0])}}" alt="IMG-PRODUCT">
+                        <a href="{{url('find_products/'.$featured_product->id)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                             Quick View
                         </a>
                     </div>
@@ -239,13 +240,58 @@
             @endforeach
 
         </div>
-
-        <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Load More
-            </a>
-        </div>
     </div>
 </section>
+
+<section class="bg0 p-t-23 p-b-140">
+    <div class="container">
+        <div class="p-b-10">
+            <h3 class="ltext-103 cl5">
+                Latest Products
+            </h3>
+        </div>
+
+
+        <div class="row isotope-grid">
+            @foreach($latest_products as $latest_product)
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    {{--   $latest_product  --}}
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img src="{{asset(explode('|',$latest_product->image)[0])}}" alt="IMG-PRODUCT">
+                            <a href="{{url('find_products/'.$latest_product->id)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                Quick View
+                            </a>
+                        </div>
+                        <div class="block2-txt flex-w flex-t p-t-14">
+                            <div class="block2-txt-child1 flex-col-l ">
+                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{$latest_product->name}}
+                                </a>
+                                <span class="stext-105 cl3">
+                                ${{$latest_product->price}}
+                            </span>
+                            </div>
+                            <div class="block2-txt-child2 flex-r p-t-3">
+                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+        {{--<div class="flex-c-m flex-w w-full p-t-45">--}}
+            {{--<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">--}}
+                {{--Load More--}}
+            {{--</a>--}}
+        {{--</div>--}}
+    </div>
+</section>
+
 
 @include('homePage.productModal')

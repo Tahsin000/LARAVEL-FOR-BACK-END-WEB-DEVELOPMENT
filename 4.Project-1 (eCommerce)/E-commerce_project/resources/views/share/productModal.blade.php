@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@section('title', 'CARD | '.$product->name)
+
 <style>
     .h-screen{
         height:100vh;

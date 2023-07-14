@@ -17,6 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(3);
+
+        session()->put('cart_items', Cart::count());
+
         return view('shop.shop', compact('products'));
     }
 
@@ -172,8 +175,8 @@ class ProductController extends Controller
         return redirect('/view_cart')->with('success', 'Product Remove successfully');
     }
     public function home(){
-        $featured_products = Product::orderBy('price', 'desc')->limit(3)->get();
-        $latest_products = Product::orderBy('created_at', 'desc')->limit(2)->get();
+        $featured_products = Product::orderBy('price', 'desc')->limit(4)->get();
+        $latest_products = Product::orderBy('created_at', 'desc')->limit(4)->get();
         return view('homePage.homePage', compact('featured_products', 'latest_products'));
     }
 }
