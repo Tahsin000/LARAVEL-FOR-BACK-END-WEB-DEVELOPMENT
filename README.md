@@ -4,3 +4,4 @@
 - ## [2.Getting Started](./2.Getting%20Started/)
 - ## [3.Accessing Database](./3.Accessing%20Database/)
 - ## [4.Project-1 (eCommerce)](<./4.Project-1%20(eCommerce)/>)
+- ## [5.Diving Deep into Laravel](<5.Diving Deep into Laravel>)
