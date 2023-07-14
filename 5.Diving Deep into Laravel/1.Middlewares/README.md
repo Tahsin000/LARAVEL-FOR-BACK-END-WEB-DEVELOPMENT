@@ -1,5 +1,9 @@
 # 1. 1.Middlewares
 
+## assets
+- ### [2.Authentication Middleware](<2.Authentication Middleware>)
+- ### [Custom Middleware-2](<Custom Middleware-2>)
+
 ## 1.Introduction To Laravel Middlewares -- Web Development with Laravel
 
 ## Laravel Middleware Overview
@@ -95,7 +99,7 @@ public function __construct(){
 }
 ```
 
-### Step: 3 | How to defined ```check_user``` in the kernel inside of `$routeMiddleware` array
+### Step: 3 | How to defined `check_user` in the kernel inside of `$routeMiddleware` array
 
 ```php
 'check_user' => \App\Http\Middleware\CheckUser::class,
