@@ -14,9 +14,9 @@
                         <li class="{{ request()->is('/shop') ? 'active-menu' : '' }}">
                             <a href="{{url('shop')}}">Shop</a>
                         </li>
-                        <li class="{{ request()->is('/view_cart') ? 'active-menu' : '' }}" data-label1="hot">
-                            <a href="{{url('view_cart')}}">My_Cart</a>
-                        </li>
+                        {{--<li class="{{ request()->is('/view_cart') ? 'active-menu' : '' }}" data-label1="hot">--}}
+                            {{--<a href="{{url('view_cart')}}">My_Cart</a>--}}
+                        {{--</li>--}}
                         <li class="{{ request()->is('/blog') ? 'active-menu' : '' }}">
                             <a href="{{url('blog')}}">Blog</a>
                         </li>
@@ -33,9 +33,15 @@
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                    @if(session()->has('cart_items'))
+                    <a href="{{url('view_cart')}}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify={{session()->get('cart_items')}}>
                         <i class="zmdi zmdi-shopping-cart"></i>
-                    </div>
+                    </a>
+                    @else
+                    <a href="{{url('view_cart')}}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </a>
+                    @endif
                     <a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>

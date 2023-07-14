@@ -164,10 +164,16 @@ class ProductController extends Controller
     public function viewCart(){
         $carts = Cart::content();
         $subTotal = Cart::subtotal();
+        session()->put('cart_items', Cart::count());
         return view('cart.cart', compact('carts', 'subTotal'));
     }
     public function removeItem($rowId){
         Cart::remove($rowId);
         return redirect('/view_cart')->with('success', 'Product Remove successfully');
+    }
+    public function home(){
+        $featured_products = Product::orderBy('price', 'desc')->limit(3)->get();
+        $latest_products = Product::orderBy('created_at', 'desc')->limit(2)->get();
+        return view('homePage.homePage', compact('featured_products', 'latest_products'));
     }
 }

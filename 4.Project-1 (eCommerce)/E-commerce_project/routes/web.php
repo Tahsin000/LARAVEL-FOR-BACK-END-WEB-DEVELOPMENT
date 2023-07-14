@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function(){
-    return view('homePage.homePage');
-});
+Route::get('/', '\App\Http\Controllers\ProductController@home');
 
 //Route::get('/shop', function(){
 //    return view('shop.shop');
