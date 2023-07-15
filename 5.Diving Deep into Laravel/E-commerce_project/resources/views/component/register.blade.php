@@ -24,6 +24,15 @@
                         {{ session()->get('error') }}
                     </div>
                 @endif
+                @if($errors->any())
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h2>Register Form</h2>
                 <form method="POST" action="/users">
                     @csrf
