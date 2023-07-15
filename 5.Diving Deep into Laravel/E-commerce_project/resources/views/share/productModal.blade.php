@@ -2,6 +2,8 @@
 
 @section('title', 'CARD | '.$product->name)
 
+<meta name="csrf_token" content="{{csrf_token()}}">
+
 <style>
     .h-screen{
         height:100vh;
@@ -16,6 +18,7 @@
         <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
             <button class="how-pos3 hov3 trans-04 js-hide-modal1">
             </button>
+            <div id="error_message"> </div>
             <div class="row">
                 <div class="col-md-6 col-lg-7 p-b-30">
                     <div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -89,7 +92,7 @@
                                             <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-minus"></i>
                                             </div>
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1">
+                                            <input class="mtext-104 cl3 txt-center num-product" id="qty" type="text" name="quantity" value="1" onchange="validateAmount(this.value, {{ $product->id }})">
                                             <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
                                             </div>
@@ -151,3 +154,38 @@
 
     @endforeach
 </div>
+
+<script>
+    function validateAmount(amount, pid){
+        $.ajaxSetup({
+            "headers":{
+                "X-CSRF-TOKEN": $('meta[name = "csrf_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:"/products/validate_amount",
+            data:{
+                'qty' : amount,
+                'pid' : pid 
+            },
+            async:false,
+            type: 'POST'
+        }).done(function(data){
+            let newData = JSON.parse(data);
+            let htm = ''; 
+
+            if (newData.success){
+                htm += `<div class="alert alert-danger">${newData.message}</div>`;
+                document.getElementById('error_message').innerHTML = htm;
+                document.getElementById('qty').value = 1;
+            } else {
+                document.getElementById('error_message').innerHTML = '';
+            }
+            console.log(newData);
+
+
+            
+        });
+        // alert(`${amount}, ${pid}`);
+    }
+</script>

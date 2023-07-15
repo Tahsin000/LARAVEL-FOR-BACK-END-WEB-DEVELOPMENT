@@ -64,3 +64,6 @@ Route::get('/remove_item/{rowId}', '\App\Http\Controllers\ProductController@remo
 // ----------  admin product ---------------
 Route::get('/admin_product', '\App\Http\Controllers\ProductController@addProduct')->middleware('auth');
 Route::get('/find_products/{id}', '\App\Http\Controllers\ProductController@find_products');
+
+//----------------- cart quantity limit --------------------
+Route::post('/products/validate_amount', '\App\Http\Controllers\ProductController@validateAmount');

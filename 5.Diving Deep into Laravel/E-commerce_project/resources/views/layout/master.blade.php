@@ -11,7 +11,8 @@
 </head>
 </head>
 
-<body class="animsition">
+<body class=""> 
+    {{-- animsition --}}
     @include('share.navbar')
     @yield('content')
 

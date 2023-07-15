@@ -179,4 +179,20 @@ class ProductController extends Controller
         $latest_products = Product::orderBy('created_at', 'desc')->limit(4)->get();
         return view('homePage.homePage', compact('featured_products', 'latest_products'));
     }
+    public function validateAmount(Request $request){
+        // dd($request->all());
+        $id = $request->has('pid')? $request->get('pid'):'';
+        $product_amount = Product::find($id)->amount;
+
+        if ($request->has('qty') && $request->get('qty') > $product_amount){
+            return json_encode([
+                'success'=>true,
+                'message'=> 'product quantity must be less thene '. $product_amount,
+            ]);
+        } else {
+            return json_encode([
+                'success'=>false
+            ]);
+        }
+    }
 }
